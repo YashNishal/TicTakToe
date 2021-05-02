@@ -7,20 +7,27 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.view.ViewCompat
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 
 class   MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-    }
     private var activePlayer = 1
     private var Player1 = HashSet<Int>()
     private var Player2 = HashSet<Int>()
     private var player1WinsCounts = 0
     private var player2WinsCounts = 0
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        reset_btn.setOnClickListener {
+            restartGame()
+        }
+    }
 
     fun buClick(view: View) {
         val buSelected = view as Button
@@ -143,12 +150,12 @@ class   MainActivity : AppCompatActivity() {
 
         if (winner == 1) {
             player1WinsCounts++
-            Toast.makeText(this,"Player 1 has Won",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Player 1 has Won",Toast.LENGTH_SHORT).show()
             restartGame()
         }
         else if(winner == 2) {
             player2WinsCounts++
-            Toast.makeText(this,"Player 2 has Won",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Player 2 has Won",Toast.LENGTH_SHORT).show()
             restartGame()
         }
     }
